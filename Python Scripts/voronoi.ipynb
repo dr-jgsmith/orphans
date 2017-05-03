@@ -19,25 +19,28 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 
-f = csv.reader(open("fm_data_us_cl.csv", 'r'))
+f = csv.reader(open("fm_data_us.csv", 'r'))
 
 points = []
 
 next(f)
 for row in f:
     p = []
-    #twerp lat = row[5] lon = row[6]
 
     #farmers market
     lat = row[20] 
     lon = row[21]
-    x = float(lat)
-    y = float(lon)
-    p.append(x)
-    p.append(y)
-    
-    points.append(p)
-    print(p)
+
+    try:
+        x = float(lat)
+        y = float(lon)
+        p.append(x)
+        p.append(y)
+        points.append(p)
+        print(p)
+    except Exception:
+        print("skipped error.")
+        pass
     
 
 data = np.array(points)
